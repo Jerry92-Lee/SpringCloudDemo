@@ -16,6 +16,8 @@
         <module>service-feign</module>
         <module>service-zuul</module>
         <module>config-server</module>
+        <module>config-client</module>
+        <module>imooc-test</module>
     </modules>
 
     <parent>
@@ -51,6 +53,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
