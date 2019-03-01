@@ -1,9 +1,9 @@
-package com.imooc.test.aop.dynamic;/**
+package com.imooc.aop.dynamic;/**
  * @author Jerry
  * @version 2019-02-28
  */
 
-import com.imooc.test.aop.RealSubject;
+import com.imooc.aop.RealSubject;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

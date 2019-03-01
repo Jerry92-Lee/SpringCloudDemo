@@ -1,11 +1,10 @@
-package com.imooc.test;/**
+package com.imooc;/**
  * @author Jerry
  * @version 2019-02-25
  */
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 
 /**
  * @Description TODO

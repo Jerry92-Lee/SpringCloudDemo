@@ -1,4 +1,4 @@
-package com.imooc.test.aop.cglib;/**
+package com.imooc.aop.cglib;/**
  * @author Jerry
  * @version 2019-02-28
  */

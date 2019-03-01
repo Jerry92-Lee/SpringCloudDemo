@@ -1,10 +1,10 @@
-package com.imooc.test.aop.pattern;/**
+package com.imooc.aop.pattern;/**
  * @author Jerry
  * @version 2019-02-28
  */
 
-import com.imooc.test.aop.RealSubject;
-import com.imooc.test.aop.Subject;
+import com.imooc.aop.RealSubject;
+import com.imooc.aop.Subject;
 
 /**
  * @Description TODO

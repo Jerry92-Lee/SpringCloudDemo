@@ -1,4 +1,4 @@
-package com.imooc.test.interceptor;/**
+package com.imooc.interceptor;/**
  * @author Jerry
  * @version 2019-02-25
  */
