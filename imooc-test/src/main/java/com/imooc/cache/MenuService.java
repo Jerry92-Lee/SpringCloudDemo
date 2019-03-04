@@ -20,9 +20,14 @@ import java.util.List;
 public class MenuService {
 
     @Cacheable(cacheNames = {"menu"})
-    public List<String> getMenuList(){
+    public List<String> getMenuList() {
         System.out.println("");
         System.out.println("mock: get from db");
-        return Arrays.asList("article","comment", "admin");
+        return Arrays.asList("article", "comment", "admin");
+    }
+
+    public List<String> getRecommends() {
+        MenuService proxy = ApplicationContextHolder.getCtx().getBean(MenuService.class);
+        return proxy.getMenuList();
     }
 }

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@EnableCaching
 public class CacheDemoApplicationTest {
 
     @Autowired
@@ -27,5 +29,11 @@ public class CacheDemoApplicationTest {
     public void testCache(){
         System.out.println("call:"+menuService.getMenuList());
         System.out.println("call:"+menuService.getMenuList());
+    }
+
+    @Test
+    public void testInnerCall(){
+        System.out.println("call:"+menuService.getRecommends());
+        System.out.println("call:"+menuService.getRecommends());
     }
 }
