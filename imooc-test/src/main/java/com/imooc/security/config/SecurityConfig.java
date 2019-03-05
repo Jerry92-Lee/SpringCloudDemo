@@ -26,10 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/index").permitAll()
                 .anyRequest().authenticated()
-                .and().
-                httpBasic()
-                .and()
-                .logout().permitAll();
+                .and().httpBasic()
+                .and().logout().permitAll();
     }
 
     @Autowired
