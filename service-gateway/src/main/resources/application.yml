@@ -1,0 +1,26 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false # 服务注册和发现功能，true:为发现的每一个服务创建一个route; false:不创建route
+          lower-case-service-id: true # 服务id转为小写
+      # 创建route，规则如下：将以/test/**开头的请求都会转发到uri为lb://SERVICE-HI的地址上
+      routes:
+        - id: service-hi
+          uri: lb://SERVICE-HI
+          predicates:
+            - Path=/test/** #所有 /test/** 的请求
+          filters:
+            - StripPrefix=1 #剥离前缀1级，每个/为层级
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

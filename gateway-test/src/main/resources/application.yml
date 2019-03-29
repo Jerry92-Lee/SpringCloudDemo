@@ -1,0 +1,139 @@
+server:
+  port: 8084
+
+spring:
+  profiles:
+    active: rewrite_path_route
+
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: after_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - After=2017-01-20T17:42:47.789-07:00[America/Denver]
+  profiles: after_route
+
+# 当请求的Header中有X-Request-Id的header名，且header值为数字时，将会被路由转发到指定uri
+# curl -H 'X-Request-Id:1' localhost:8084
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: header_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Header=X-Request-Id, \d+
+  profiles: header_route
+
+# 当请求中带有cookie的名称是name，值是jerry的，将会被路由转发到指定uri
+# curl -H 'Cookie:name=jerry' localhost:8084
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: cookie_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Cookie=name, jerry
+  profiles: cookie_route
+
+# 请求头中含有Host为 baidu.com 的请求，将会被路由转发到指定uri
+# curl -H 'Host:www.baidu.com' localhost:8084
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: host_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Host=**.baidu.com
+  profiles: host_route
+
+# 所有get请求，都会被路由转发到指定uri
+# curl localhost:8084/get
+# curl -XPOST localhost:8084
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: method_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Method=GET
+  profiles: method_route
+
+# 请求路径匹配 /test/xx 的所有请求，会被路由转发到指定uri
+# curl localhost:8084/test/v1
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: path_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Path=/test/{segment}
+  profiles: path_route
+
+# 匹配请求中带有参数 test, 会被路由转发到指定uri
+# curl localhost:8084?test=ba1
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: query_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Query=test, ba.
+  profiles: query_route
+
+# 匹配所有的Get请求，并在header中加上 "X-Request-Foo": "Bar" 信息，并被路由转发到指定uri
+# curl localhost:8084/get
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: add_req_header_route
+          uri: http://httpbin.org:80/get
+          predicates:
+            - Method=GET
+          filters:
+            - AddRequestHeader=X-Request-Foo, Bar
+  profiles: add_req_header_route
+
+# 匹配所有 /forezp/** 的请求，并被路由重写至 https://blog.csdn.net/forezp/**
+# localhost:8084/forezp/
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: rewrite_path_route
+          uri: https://blog.csdn.net
+          predicates:
+            - Path=/forezp/**
+          filters:
+            - RewritePath=/forezp/(?<segment>.*), /$\{segment}
+  profiles: rewrite_path_route
+
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: elapse_route
+          uri: http://httpbin.org:80/get
+          filters:
+            - RequestTime=false
+          predicates:
+            - Path=/forezp/**
+  profiles: elapse_route

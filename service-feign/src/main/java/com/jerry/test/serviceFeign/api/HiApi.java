@@ -6,6 +6,7 @@ package com.jerry.test.serviceFeign.api;/**
 import com.jerry.test.serviceFeign.service.SchedualServiceHi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,7 +22,7 @@ public class HiApi {
     SchedualServiceHi schedualServiceHi;
 
     @GetMapping(value = "/hi")
-    public String sayHi(String name){
+    public String sayHi(@RequestParam String name){
         return schedualServiceHi.sayHiFromClient(name);
     }
 }

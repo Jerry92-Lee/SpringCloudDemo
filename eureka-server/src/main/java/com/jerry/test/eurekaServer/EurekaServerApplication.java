@@ -9,6 +9,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * @Description 注册中心-EurekaServer
+ * 维护服务生产者、注册中心、服务消费者三者之间的关系。
+ *
  * @Author Administrator
  * @Date 2019/2/22 11:31
  * @Version 1.0

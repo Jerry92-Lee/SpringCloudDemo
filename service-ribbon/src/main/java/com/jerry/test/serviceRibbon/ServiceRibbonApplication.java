@@ -13,15 +13,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Description TODO
+ * @Description 客户端负载均衡
  * @Author Administrator
  * @Date 2019/2/22 13:31
  * @Version 1.0
  **/
 @SpringBootApplication
 @EnableEurekaClient
-@EnableDiscoveryClient
-@EnableHystrix
+@EnableDiscoveryClient  //向服务中心注册
+@EnableHystrix  //打开Hystrix断路器
 public class ServiceRibbonApplication {
 
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class ServiceRibbonApplication {
     }
 
     @Bean
-    @LoadBalanced
+    @LoadBalanced //表明这个restRemplate开启负载均衡的功能
     RestTemplate restTemplate(){
         return new RestTemplate();
     }

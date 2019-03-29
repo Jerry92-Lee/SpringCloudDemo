@@ -4,9 +4,16 @@ server:
 eureka:
   instance:
     hostname: localhost
+#    prefer-ip-address: true # 使用ip地址注册，而不是主机名称
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false # 是否要注册到其他Eureka Server实例
+    fetch-registry: false # 是否要从其他Eureka Server实例获取数据
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#  server:
+#    enable-self-preservation: false # 关闭自我保护模式（缺省为打开）
+#    eviction-interval-timer-in-ms: 1000 #续期时间，即扫描失效服务的间隔时间(毫秒)
 
+spring:
+  application:
+    name: eureka-server

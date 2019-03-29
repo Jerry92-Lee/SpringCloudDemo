@@ -31,6 +31,7 @@ public class HiFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
+        // filter执行顺序，数字越大优先级越低
         return 0;
     }
 

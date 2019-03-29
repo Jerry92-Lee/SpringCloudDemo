@@ -20,12 +20,12 @@ public class HelloService {
     @Autowired
     RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "error")
+    @HystrixCommand(fallbackMethod = "hiError")
     public String sayHello(String name){
-        return restTemplate.getForObject("http://service-hi/hi?name=" + name, String.class);
+        return restTemplate.getForObject("http://SERVICE-HI/hi?name=" + name, String.class);
     }
 
-    public String error(String name){
+    public String hiError(String name){
         return "Sorry "+name+", service-ribbon is error !";
     }
 }
