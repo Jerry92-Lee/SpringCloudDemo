@@ -45,7 +45,7 @@
         <logback-logstash.version>5.3</logback-logstash.version>
         <apollo.version>1.0.0</apollo.version>
         <spring-boot-admin.version>2.0.5</spring-boot-admin.version>
-        <netty.version>4.1.29.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
         <hierynomus-sshj.version>0.27.0</hierynomus-sshj.version>
     </properties>
 
